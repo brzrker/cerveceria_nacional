@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cerveceria Nacional</title>
+    {% load static %}
+    <!-- Tempus Dominus CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.7.11/dist/css/tempus-dominus.min.css"/>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    {% block css %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+    <!-- PWA Manifest -->
+     {% load pwa %}
+
+     {% progressive_web_app_meta %}
+
+
+    </head>
+    
+    <body>
+    
+        <!-- cabecera -->
+        <header id="header">
+            <nav id="nav" class="navbar fixed-top navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{% url 'home' %}">Cerveceria Nacional</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'catalogo' %}">Catalogo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'noticias' %}">Noticias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'contacto' %}">Contactanos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'galeria' %}">Galeria</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+                            </li>
+                            {% if perms.app.add_user %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Empleados</a>
+                                <ul id="menu_perfil" class="dropdown-menu dropdown-menu-end border-2">
+                                    {% if perms.app.add_user %}
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'agregar_trabajador' %}">Agregar Empleados</a></li>
+                                    {% endif %}
+                                    {% if perms.app.view_user %}
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'listar_trabajadores' %}">Listar Empleados</a></li>
+                                    {% endif %}
+                                        
+                                    
+                                </ul>
+                            </li>
+                            {% endif %}
+                            {% if perms.app.add_producto or perms.app.view_producto %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
+                                <ul id="menu_perfil" class="dropdown-menu dropdown-menu-end border-2">
+                                    {% if perms.app.add_producto %}
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'agregar_producto' %}">Agregar Producto</a></li>
+                                    {% endif %}
+                                    {% if perms.app.view_producto %}
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'listar_productos' %}">Listar Productos</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            {% endif %}
+                            {% if perms.app.add_proveedor or perms.app.view_proveedor %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Proveedores</a>
+                                <ul id="menu_perfil" class="dropdown-menu dropdown-menu-end border-2">
+                                    {% if perms.app.add_proveedor %}
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'agregar_proveedor' %}">Agregar Proveedor</a></li>
+                                    {% endif %}
+                                    {% if perms.app.view_proveedor %}
+                                        <li class="nav-item"><a class="nav-link" href="{% url 'listar_proveedores' %}">Listar Proveedores</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            {% endif %}
+                            
+                            <li>
+                                <a href=""></a>
+                                <ul>
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <!-- PERFIL -->
+                        {% if user.is_authenticated %}
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @{{ user.username }}
+                                    </a>
+                                    <ul id="menu_perfil" class="dropdown-menu dropdown-menu-end border-2">
+                                        <li><a class="nav-link" href="{% url 'perfil_usuario' %}">Perfil</a></li>
+                                        <li><a class="nav-link" href="#">Mis Compras</a></li>
+                                        <li><hr class="dropdown-divider" style="background-color: #fce0be;"></li>
+                                        <li>
+                                            <form method="post" action="{% url 'logout' %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="nav-link" id="boton_primario">Cerrar Sesión</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        {% else %}
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Iniciar Sesion</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrate</a></li>
+                            </ul>
+                            
+                        {% endif %}
+                        
+                        
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- src="{% static 'app/img/wallpaper.jpg'%}" -->
+        <div class="container mt-5 p-5">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div id="contenido_carta" class="card p-4">
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% block contenido %}
+
+                        <!-- Aca va el contenido de cada pagina -->
+
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer" class="navbar py-5 mt-5 navbar-expand-lg" >
+            <div class="container">
+                <div class="col-md-4 d-flex align-items-center">
+                    <p class="text-muted">© 2025 Cerveceria Nacional. Todos los derechos reservados.</p>
+                    <p class="text-muted">Desarrollado por <a href="#">brzrkr</a></p>
+                </div>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3">
+                        <a class="text-body-secondary" href="">
+                            <img class="bi" width="24" height="24" src="{% static 'app/img/icon_instagram.png' %}" alt="">
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a class="text-body-secondary" href="">
+                            <img class="bi" width="24" height="24" src="{% static 'app/img/icon_whatsapp.png' %}" alt="">
+                        </a>
+                    </li>
+                    <li class="ms-3">
+                        <a class="text-body-secondary" href="">
+                            <img class="bi" width="24" height="24" src="{% static 'app/img/icon_x.png' %}" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+        
+        {% block js %}
+        <!-- Popper y Tempus Dominus -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+        
+        <!-- Google Maps API -->
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&loading=async&libraries=maps&v=beta" defer>
+        </script>
+        {% endblock %}
+    </body>
+</html>

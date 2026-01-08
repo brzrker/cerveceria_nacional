@@ -1,0 +1,110 @@
+/* 
+Fondo principal:                    #2B1F15 (marrón oscuro elegante y sobrio)
+Encabezados y botones importantes:  #D4A950 o #E6C580
+Texto sobre fondo oscuro:           #F4F1E9
+Detalles, bordes o separadores:     #8B5E3C o #1A1A1A
+
+
+cafe oscurito                       #302B1F
+                                    fce0be
+*/
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-image: url("../img/wallpaper.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* <-- Esto la deja fija al hacer scroll */
+    background-color: #fce0be !important; /* Color de fondo claro */
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+
+.banner-carousel {
+    height: 180px; /* Ajusta el valor según el alto que desees */
+    overflow: hidden;
+}
+.banner-img {
+    height: 20rem; /* Ajusta la altura a tu gusto */
+    object-fit: cover;
+}
+
+#card-body {
+    background-color: #D4A950;
+}
+
+#encabezado {
+    background-color: #D4A950 !important;
+    color: #E6C580 !important;
+}
+
+#boton_primario {
+    background-color: #2B1F15;
+    color: #fce0be;
+}
+#boton_primario:hover {
+    color: #D4A950;
+}
+
+#nav {
+    background-color: #2B1F15 !important;
+}
+#nav a {
+    color: #fce0be; /* Cambia #fff por el color que prefieras */
+}
+#nav a:hover {
+    color: #D4A950; /* Cambia #fff por el color que prefieras */
+}
+
+#dropdown_menu {
+    color: #2B1F15; /* Cambia #fff por el color que prefieras */
+}
+
+#menu_perfil {
+    background-color: #2B1F15 !important;
+}
+
+#contenido_carta {
+    background-color: #fce0be;
+}
+
+
+#contenido_carta h1 {
+    color: #2B1F15 !important; /* Cambia #fff por el color que prefieras */
+}
+
+#link {
+    color: #2B1F15 !important; /* Cambia #fff por el color que prefieras */
+}
+#link a {
+    color: #fce0be !important; /* Cambia #fff por el color que prefieras */
+}
+#link a:hover {
+    color: #D4A950 !important; /* Cambia #fff por el color que prefieras */
+}
+
+
+/* Pie de página: */
+/* Asegúrate de que el footer esté al final de la página */
+#footer {
+    background-color: #2B1F15;
+    color: #fce0be !important; /* Cambia #fff por el color que prefieras */
+    margin-top: auto !important; /* Asegura que el footer se mantenga al final */
+}
+#footer p {
+    color: #fce0be !important; /* Cambia #fff por el color que prefieras */
+}
+
+#footer a {
+    color: #fce0be; /* Cambia #fff por el color que prefieras */
+}
+
+#footer a:hover {
+    color: #D4A950; /* Cambia #fff por el color que prefieras */
+}

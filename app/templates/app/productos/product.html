@@ -1,0 +1,36 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1>Agrega los productos</h1>
+<div class="card border border-dark border-2" id="card-body">
+    <div class="card-body">
+
+        <form action="" method="post" enctype="multipart/form-data">
+
+            <h1 class="text-label">{{ producto.nombre }}</h1>
+            {% if producto.imagen %}
+                <img class="img-fluid rounded mx-auto d-block" style="height: 20rem;" id="imagen" src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+            {% endif %}
+            <p>Sabor: {{ producto.sabor }}</p>
+            <p>Para: {{ producto.para }}</p>
+            <p>Precio: ${{ producto.precio }}</p>
+            <p>Volumen: {{ producto.volumen_litros }} litros</p>
+            <p>Tipo de cerveza: {{ producto.tipo_cerveza }}</p>
+            <p>Cantidad disponible: {{ producto.cantidad }}</p>
+            <p>Fecha de elaboración: {{ producto.fecha_elaboracion }}</p>
+            <p>Proveedor: {{ producto.proveedor }}</p>
+
+
+            <div class="d-flex justify-content-end">
+                <button type="" href="#" id="boton_primario" class="btn" id="boton">Seleccionar</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

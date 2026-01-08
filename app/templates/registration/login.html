@@ -1,0 +1,52 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+    <h1>Ingresa tus credenciales</h1>
+
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="post">
+
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <input type="submit" value="Iniciar Sesión" class="btn btn-primary">
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card" id="card-body">
+                    <div class="card-body">
+                        <form action="" method="post">
+
+                            {% csrf_token %}
+
+                            {{ form | crispy }}
+
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" id="boton_primario" class="btn" id="boton">Enviar</button>
+                            </div>
+
+                            <li style="list-style-type: none">No tienes cuenta? <a style="text-decoration: none;" href="{% url 'registro' %}">Registrate</a></li>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

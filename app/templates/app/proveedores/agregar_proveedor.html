@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+{% load crispy_forms_tags %}
+
+<h1>Agrega los productos</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card border border-dark border-2" id="card-body">
+                <div class="card-body">
+
+                    <form action="" method="post" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        {{ form | crispy }}
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" id="boton_primario" class="btn" id="boton">Enviar</button>
+                            &nbsp;
+                            <button type="reset" class="btn btn-secondary">Limpiar</button>
+                        </div>
+
+                    </form>
+                    <!-- {{ mensaje}} -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1> Noticias </h1>
+
+<div class="container">
+  <div class="row">
+
+    {% for noticia in noticias %}
+
+    <div class="mb-4">
+      <div class="card">
+        <div class="card-body">
+          
+          <h5 class="card-title">{{ noticia.titulo }}</h5>
+          <p>{{ noticia.contenido }}</p>
+          
+        </div>
+      </div>
+    </div>
+    
+
+    {% endfor %}
+    
+  </div>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock %}

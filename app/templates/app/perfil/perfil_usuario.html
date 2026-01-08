@@ -1,0 +1,39 @@
+{% extends "app/base.html" %}
+
+
+{% block contenido %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+    <h1>Perfil de usuario</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card border border-dark border-2" id="card-body">
+                    <div class="card-body">
+
+                        <p><strong>Nombre:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+                        <p><strong>Correo electrónico:</strong> {{ user.email }}</p>
+                        <p><strong>Fecha de creación:</strong> {{ user.date_joined|naturaltime }}</p>
+                        <p><strong>Última actualización:</strong> {{ user.last_login|naturaltime }}</p>
+                        <!-- <p><strong>Perfil:</strong> {{ perfil.descripcion }}</p>
+                        <p><strong>Teléfono:</strong> {{ perfil.telefono }}</p>
+                        <p><strong>Dirección:</strong> {{ perfil.direccion }}</p>
+                        <p><strong>Ciudad:</strong> {{ perfil.ciudad }}</p>
+                        <p><strong>Nacionalidad:</strong> {{ perfil.pais }}</p> -->
+                        {% if perfil.imagen %}
+                            <p><strong>Imagen de perfil:</strong></p>
+                            <img src="{{ perfil.imagen.url }}" alt="Imagen de perfil" class="img-fluid rounded">
+                        {% else %}
+                            <p><strong>Imagen de perfil:</strong> No hay imagen disponible.</p>
+                        {% endif %}
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'editar_perfil' %}" class="btn btn-primary">Editar Perfil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block contenido %}
+
+<h1>Nosotros</h1>
+<p>Bienvenido a nuestra página de Nosotros. Aquí encontrarás información sobre nuestra empresa, nuestra misión y visión.</p>
+
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        <div class="">
+            <div class="card" id="card-body">
+                <div class="card-body border border-dark border-2">
+                    <p class="card-text">
+                    Cervecería Nacional es una empresa familiar ubicada en la periferia de Santiago. 
+                    Con pasión y dedicación, llevamos varios años produciendo cerveza artesanal de alta calidad, 
+                    utilizando técnicas tradicionales y los mejores ingredientes naturales. Nuestra historia comienza en un pequeño garage, 
+                    donde los fundadores, una pareja apacionada por la cerveza, decidieron convertir su hobby en un negocio que celebra los sabores
+                    unicos y la comunidad loca. Hoy en dia, seguimos creciendo y compartiendo nuestra pasion con más personas
+                    </p>
+                    <h4>Mision</h4>
+                    <p>
+                        Producir cerveza artesanal de la más alta calidad, respetando las tradiciones y utilizando ingredientes naturales,
+                        para ofrecer a nuestros clientes una experiencia única y auténtica que refleje nuestra pasión y compromiso con la excelencia.
+                    </p>
+                    <h4>Visión</h4>
+                    <p>
+                        Ser reconocidos como líderes en la producción de cerveza artesanal en nuestra región, 
+                        destacando por nuestra innovación, sostenibilidad y conexión con la comunidad, 
+                        mientras mantenemos nuestros valores familiares y nuestro compromiso con la calidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="card" id="card-body">
+                <div class="card-body border border-dark border-2">
+                    <gmp-map
+  center="37.4220656,-122.0840897"
+  zoom="10"
+  map-id="DEMO_MAP_ID"
+  style="height: 400px"
+></gmp-map>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<p>Para más información, no dudes en <a href="{% url 'contacto' %}">contactarnos</a>.</p>
+
+{% endblock %}

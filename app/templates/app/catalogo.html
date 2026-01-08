@@ -1,0 +1,27 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+<h1>NUESTRO CATALOGO</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+  {% for p in productos %}
+  <div class="col">
+    <div class="card h-100">
+      {% if p.imagen %}
+      <img src="{{ p.imagen.url }}" class="card-img-top">
+      {% endif %}
+      <div id="card-body" class="card-body border border-dark border-2">
+        <h5 class="card-title">{{p.nombre}}</h5>
+        <h6 class="card-subtitle text-body-secondary">Sabor: {{p.sabor}}</h6>
+        <p class="card-text">Ideal para: {{p.para}}</p>
+        <div class="d-flex justify-content-end"><a href="{% url 'product' p.id %}" id="boton_primario" class="btn">Obtener</a></div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

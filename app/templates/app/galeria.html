@@ -1,0 +1,35 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+<h1> Galeria </h1>
+<p>En esta sección podrás ver las imágenes de nuestros productos.</p>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card">
+      <img src="{% static 'app/img/evento_degustacion.png' %}" class="rounded" alt="...">
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="{% static 'app/img/lanzamiento_cerveza.png' %}" class="rounded" alt="...">
+      
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="{% static 'app/img/producto.jpg' %}" class="rounded" alt="...">
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="{% static 'app/img/visita_fabrica.png' %}" class="rounded" alt="...">
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

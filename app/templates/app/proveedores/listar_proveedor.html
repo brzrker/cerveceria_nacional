@@ -1,0 +1,58 @@
+{% extends "app/base.html" %}
+
+
+{% block contenido %}
+{% load humanize %}
+
+<table class="table table-striped" id="card-body">
+    <tr>
+        <th>Nombre</th>
+        <th>Rut</th>
+        <th>Correo Electronico</th>
+        <th>Telefono</th>
+        <th>Dirección</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for proveedor in entity %}
+
+    <tr>
+        <td>{{ proveedor.nombre }}</td>
+        <td>{{ proveedor.rut }}</td>
+        <td>{{ proveedor.correo }}</td>
+        <td>{{ proveedor.telefono }}</td>
+        <td>{{ proveedor.direccion }}</td>
+        <td>
+            {% if perms.app.change_proveedor %}
+            <a class="btn btn-sm" id="boton_primario" href="{% url 'modificar_proveedor' proveedor.id %}">Modificar</a>
+            {% endif %}
+            {% if perms.app.delete_proveedor %}
+            <a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ proveedor.id }}" href="#">Eliminar</a>
+            {% endif %}
+
+            <div class="modal fade" id="staticBackdrop{{ proveedor.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel{{ proveedor.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content" id="contenido_carta">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel{{ proveedor.id }}">Advertencia</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estas seguro de eliminar el proveedor <strong>{{ proveedor.nombre }}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-danger" href="{% url 'eliminar_proveedor' proveedor.id %}">Eliminar</a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>
+{% include 'app/paginator.html' %}
+{% endblock %}
+
+
