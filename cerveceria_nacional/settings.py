@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-oz)bu6*lt4u(%ka2%de-phu%c8wse9u1vhvp_-@%21lb2#xm_m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
