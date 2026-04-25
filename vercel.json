@@ -1,0 +1,12 @@
+{
+  "builds": [{
+    "src": "cerveceria_nacional/wsgi.py",
+    "use": "@vercel/python"
+  }],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "cerveceria_nacional/wsgi.py"
+    }
+  ]
+}
