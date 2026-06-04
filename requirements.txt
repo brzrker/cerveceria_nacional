@@ -6,3 +6,5 @@ crispy-bootstrap5
 django-rest-framework
 django-pwa
 whitenoise
+dj-database-url
+psycopg2-binary
